@@ -116,26 +116,6 @@ public class Player : Agent {
         }
     }
 
-    //For debug
-    //public void PlaceRandomBet(int r)
-    //{
-    //    int b = 0;
-    //    if (r==1)
-    //    {
-    //        b = 1;
-    //    }
-    //    else if (r==2)
-    //    {
-    //        b = 5;
-    //    }
-    //    else if(r==3)
-    //    {
-    //        b = 25;
-    //    }
-    //    Bet.GetComponent<Bet>().BetValue = b;
-    //}
-
-
     /////////////////Agent specific functions///////////////////////////////////////////
 
     public override void CollectObservations()
