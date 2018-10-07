@@ -97,7 +97,7 @@ public class Player : Agent {
     public void LoseChips()
     {
         chips -= BetValue;
-        Debug.Log("Chips reduced by " + BetValue + " to " + chips);
+        //Debug.Log("Chips reduced by " + BetValue + " to " + chips);
         account.text = chips.ToString();
     }
 
@@ -136,24 +136,24 @@ public class Player : Agent {
     //act[] has 1 element between 0 and 3
     public override void AgentAction(float[] act, string textAction)
     {
-        Debug.Log("Bet to call:" + betToCall);
+        //Debug.Log("Bet to call:" + betToCall);
 
 
         if (act[0] == 0)
         {
-            Debug.Log("I fold");
+            //Debug.Log("I fold");
             folded = true;
         }
         else if (act[0] == 1)
         {
             if (betToCall <= 1)
             {
-                Debug.Log("I bet 1");
+                //Debug.Log("I bet 1");
                 PlaceBet(1);
             }
             else
             {
-                Debug.Log("I fold");
+                //Debug.Log("I fold");
                 folded = true;
             }
         }
@@ -161,12 +161,12 @@ public class Player : Agent {
         {
             if (betToCall <= 5)
             {
-                Debug.Log("I bet 5");
+                //Debug.Log("I bet 5");
                 PlaceBet(5);
             }
             else
             {
-                Debug.Log("I fold");
+                //Debug.Log("I fold");
                 folded = true;
             }
         }
@@ -174,12 +174,12 @@ public class Player : Agent {
         {
             if (betToCall <= 25)
             {
-                Debug.Log("I bet 25");
+                //Debug.Log("I bet 25");
                 PlaceBet(25);
             }
             else
             {
-                Debug.Log("I fold");
+                //Debug.Log("I fold");
                 folded = true;
             }
         }
