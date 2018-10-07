@@ -64,8 +64,7 @@ public class Table : MonoBehaviour {
     public IEnumerator Deal()
     {
         isRoundOver = false;
-
-        System.Random rng = new System.Random();
+        
         List<string> dealtCards = deck.GetComponent<Deck>().GiveNCards(Players.Count * 2);
 
         for (int i = 0; i < Players.Count; i++)
@@ -159,6 +158,7 @@ public class Table : MonoBehaviour {
 
 
             //Debug.Log("Decision making started");
+
             //HERE plays the player
             actualPlayer.GetComponent<Player>().MakeDecision(maxBetValue);
 
@@ -204,7 +204,7 @@ public class Table : MonoBehaviour {
     //Evaluating the results, giving the pot to the winner
     public void Evaluating()
     {
-        //Possible bug
+
         if (PlayersIn.Count==0)
         {
             Debug.Log("Error: no players in pot");

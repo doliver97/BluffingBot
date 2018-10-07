@@ -46,6 +46,8 @@ public class Player : Agent {
     [HideInInspector]
     public bool isFinished;
 
+    private float playerReward;
+
     // Use this for initialization
     void Start () {
         chips = 1000;
@@ -60,6 +62,7 @@ public class Player : Agent {
     public void NewRound()
     {
         Bet.GetComponent<Bet>().BetValue = 0;
+        playerReward = 0;
     }
 
     //Calls the CollectObservation() and AgentAction() methods
@@ -89,8 +92,7 @@ public class Player : Agent {
         chips += i;
         account.text = chips.ToString();
 
-        //TODO can it be here?
-        //AddReward(i);
+        playerReward += i;
     }
 
     //Removing the bet in pot from the account
@@ -99,6 +101,8 @@ public class Player : Agent {
         chips -= BetValue;
         //Debug.Log("Chips reduced by " + BetValue + " to " + chips);
         account.text = chips.ToString();
+
+        playerReward -= BetValue;
     }
 
     //Sets the two cards by getting the strings representing the cards
@@ -123,7 +127,7 @@ public class Player : Agent {
         //Debug.Log("Observations collected");
 
         //TODO we need cards, bet to call, opponents in before us, opponents behind us
-        //Now card values are implemented (current size: 2)
+        //Now only card values are implemented (current size: 2)
 
         //Hcard
         AddVectorObs(Hcard.GetComponent<Card>().Value);
@@ -184,7 +188,7 @@ public class Player : Agent {
             }
         }
 
-        AddReward(1); //example TODO does it have to be here?
+        AddReward(playerReward);
 
         isFinished = true;
         
