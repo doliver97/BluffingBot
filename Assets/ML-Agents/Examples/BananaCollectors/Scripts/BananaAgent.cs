@@ -5,8 +5,7 @@ using MLAgents;
 
 public class BananaAgent : Agent
 {
-    public GameObject myAcademyObj;
-    BananaAcademy myAcademy;
+    private BananaAcademy myAcademy;
     public GameObject area;
     BananaArea myArea;
     bool frozen;
@@ -39,7 +38,7 @@ public class BananaAgent : Agent
         Monitor.verticalOffset = 1f;
         myArea = area.GetComponent<BananaArea>();
         rayPer = GetComponent<RayPerception>();
-        myAcademy = myAcademyObj.GetComponent<BananaAcademy>();
+        myAcademy = FindObjectOfType<BananaAcademy>();
     }
 
     public override void CollectObservations()
@@ -100,19 +99,44 @@ public class BananaAgent : Agent
             }
             else
             {
-                switch ((int)act[0])
+                var forwardAxis = (int)act[0];
+                var rightAxis = (int)act[1];
+                var rotateAxis = (int)act[2];
+                var shootAxis = (int)act[3];
+                
+                switch (forwardAxis)
                 {
                     case 1:
                         dirToGo = transform.forward;
                         break;
                     case 2:
-                        shootCommand = true;
+                        dirToGo = -transform.forward;
                         break;
-                    case 3:
+                }
+                
+                switch (rightAxis)
+                {
+                    case 1:
+                        dirToGo = transform.right;
+                        break;
+                    case 2:
+                        dirToGo = -transform.right;
+                        break;
+                }
+
+                switch (rotateAxis)
+                {
+                    case 1:
                         rotateDir = -transform.up;
                         break;
-                    case 4:
+                    case 2:
                         rotateDir = transform.up;
+                        break; 
+                }
+                switch (shootAxis)
+                {
+                    case 1:
+                        shootCommand = true;
                         break;
                 }
             }

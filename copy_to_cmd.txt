@@ -1,0 +1,2 @@
+activate ml-agents
+mlagents-learn C:/Users/doliv/Unity_Projects/Bluffing/ml-agents/trainer_config.yaml --train
