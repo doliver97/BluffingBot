@@ -2061,6 +2061,11 @@ Prefab:
       propertyPath: account
       value: 
       objectReference: {fileID: 741700134}
+    - target: {fileID: 114804176858145952, guid: a522a7ef62c82c047a8995e3bc612a45,
+        type: 2}
+      propertyPath: agentParameters.maxStep
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a522a7ef62c82c047a8995e3bc612a45, type: 2}
   m_IsPrefabAsset: 0
@@ -2206,7 +2211,7 @@ MonoBehaviour:
     width: 800
     height: 600
     qualityLevel: 1
-    timeScale: 100
+    timeScale: 1
     targetFrameRate: -1
   inferenceConfiguration:
     width: 1280

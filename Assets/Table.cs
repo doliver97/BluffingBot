@@ -100,7 +100,7 @@ public class Table : MonoBehaviour {
     public IEnumerator PlayOneRound()
     {
         isPlayOneRoundRunning = true;
-        //Init
+        //Debug.Log("PlayOneRound started");
 
         //Filling PlayersIn
         PlayersIn = new List<GameObject>();
@@ -136,6 +136,7 @@ public class Table : MonoBehaviour {
         dealerIndex++;
 
         isPlayOneRoundRunning = false;
+        //Debug.Log("PlayOneRound finished");
     }
 
     
@@ -204,6 +205,12 @@ public class Table : MonoBehaviour {
     //Evaluating the results, giving the pot to the winner
     public void Evaluating()
     {
+
+        //Delete rewards before setting
+        for (int i = 0; i < Players.Count; i++)
+        {
+            Players[i].GetComponent<Player>().playerReward = 0;
+        }
 
         if (PlayersIn.Count==0)
         {

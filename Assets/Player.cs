@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : Agent {
+    private const int StartingChips = 500;
 
     //The higher card of the player
     public GameObject Hcard;
@@ -46,11 +47,11 @@ public class Player : Agent {
     [HideInInspector]
     public bool isFinished;
 
-    private float playerReward;
+    public float playerReward;
 
     // Use this for initialization
     void Start () {
-        chips = 1000;
+        chips = StartingChips;
 	}
 	
 	// Update is called once per frame
@@ -62,7 +63,6 @@ public class Player : Agent {
     public void NewRound()
     {
         Bet.GetComponent<Bet>().BetValue = 0;
-        playerReward = 0;
     }
 
     //Calls the CollectObservation() and AgentAction() methods
@@ -93,6 +93,7 @@ public class Player : Agent {
         account.text = chips.ToString();
 
         playerReward += i;
+        //if (this.name == "Player0") Debug.Log("winning, reward increased to " + playerReward + "");
     }
 
     //Removing the bet in pot from the account
@@ -103,6 +104,8 @@ public class Player : Agent {
         account.text = chips.ToString();
 
         playerReward -= BetValue;
+
+        //if (this.name == "Player0") Debug.Log("losing, reward decreased to " + playerReward + "");
     }
 
     //Sets the two cards by getting the strings representing the cards
@@ -141,7 +144,7 @@ public class Player : Agent {
     public override void AgentAction(float[] act, string textAction)
     {
         //Debug.Log("Bet to call:" + betToCall);
-
+        
 
         if (act[0] == 0)
         {
@@ -190,7 +193,16 @@ public class Player : Agent {
 
         AddReward(playerReward);
 
-        isFinished = true;
+        //if (this.name == "Player0") Debug.Log("" + playerReward + " reward added to PPO");
+
+        //someone has lost all of the money -> restart game (a better strategy might be to set max step in editor)
+        //if (chips<0)
+        //{
+        //    Done();
+        //    chips = StartingChips;
+        //}
+
+        isFinished = true; //the decision
         
     }
 
