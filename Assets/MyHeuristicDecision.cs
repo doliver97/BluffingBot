@@ -13,20 +13,22 @@ public class MyHeuristicDecision : MonoBehaviour, Decision
         //0: Hcard
         //1: Lcard
 
-        int bet = 0;
+        //int bet = 0;
 
-        if(vectorObs[0]>=13) // K or higher
-        {
-            bet = 3;
-        }
-        else if(vectorObs[0]>=10) // 10 or higher
-        {
-            bet = 2;
-        }
-        else
-        {
-            bet = 1;
-        }
+        //if(vectorObs[0]>=13) // K or higher
+        //{
+        //    bet = 3;
+        //}
+        //else if(vectorObs[0]>=10) // 10 or higher
+        //{
+        //    bet = 2;
+        //}
+        //else
+        //{
+        //    bet = 1;
+        //}
+
+        int bet = r.Next(4);
 
         return new float[1] { bet };
     }
