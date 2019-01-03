@@ -296,3 +296,5 @@ C:\Users\doliv\Unity_Projects\Bluffing\Temp\bin\Debug\UnityEngine.UnityTestProto
 C:\Users\doliv\Unity_Projects\Bluffing\Temp\bin\Debug\UnityEngine.VFXModule.xml
 C:\Users\doliv\Unity_Projects\Bluffing\Temp\bin\Debug\UnityEngine.TestRunner.xml
 C:\Users\doliv\Unity_Projects\Bluffing\Temp\bin\Debug\nunit.framework.xml
+C:\Users\doliv\Unity_Projects\Bluffing\Temp\bin\Debug\UnityEditor.UI.dll
+C:\Users\doliv\Unity_Projects\Bluffing\Temp\bin\Debug\UnityEditor.UI.xml

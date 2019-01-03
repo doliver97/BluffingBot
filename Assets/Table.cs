@@ -54,11 +54,11 @@ public class Table : MonoBehaviour {
             StartCoroutine(Deal());
         }
 
-        if(canMeasureSpeed)
+        if (canMeasureSpeed)
         {
             StartCoroutine(MeasureSpeed());
         }
-	}
+    }
 
     //Deals random cards to everyone, and plays a full round of game
     public IEnumerator Deal()
@@ -255,7 +255,7 @@ public class Table : MonoBehaviour {
 
         prevRoundNumber = round;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSecondsRealtime(1);
 
         canMeasureSpeed = true;
     }
