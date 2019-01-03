@@ -93,7 +93,7 @@ public class Player : Agent {
         account.text = chips.ToString();
 
         playerReward += i;
-        //if (this.name == "Player0") Debug.Log("winning, reward increased to " + playerReward + "");
+        //Debug.Log(name + "is winning, reward increased with " + i);
     }
 
     //Removing the bet in pot from the account
@@ -107,7 +107,7 @@ public class Player : Agent {
 
         //if (this.name == "Player0") Debug.Log("losing, reward decreased to " + playerReward + "");
     }
-
+    
     //Sets the two cards by getting the strings representing the cards
     public void SetNewCards(string s1,string s2)
     {
@@ -144,23 +144,24 @@ public class Player : Agent {
     public override void AgentAction(float[] act, string textAction)
     {
         //Debug.Log("Bet to call:" + betToCall);
-        
+
+        bool logging = false;
 
         if (act[0] == 0)
         {
-            //Debug.Log("I fold");
+            if(logging) Debug.Log(name+ " folds.");
             folded = true;
         }
         else if (act[0] == 1)
         {
             if (betToCall <= 1)
             {
-                //Debug.Log("I bet 1");
+                if (logging) Debug.Log(name+" bets 1");
                 PlaceBet(1);
             }
             else
             {
-                //Debug.Log("I fold");
+                if (logging) Debug.Log(name + " folds");
                 folded = true;
             }
         }
@@ -168,12 +169,12 @@ public class Player : Agent {
         {
             if (betToCall <= 5)
             {
-                //Debug.Log("I bet 5");
+                if (logging) Debug.Log(name +" bets 5");
                 PlaceBet(5);
             }
             else
             {
-                //Debug.Log("I fold");
+                if (logging) Debug.Log(name+" folds");
                 folded = true;
             }
         }
@@ -181,12 +182,12 @@ public class Player : Agent {
         {
             if (betToCall <= 25)
             {
-                //Debug.Log("I bet 25");
+                if (logging) Debug.Log(name +" bets 25");
                 PlaceBet(25);
             }
             else
             {
-                //Debug.Log("I fold");
+                if (logging) Debug.Log(name+" folds");
                 folded = true;
             }
         }

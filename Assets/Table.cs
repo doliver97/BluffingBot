@@ -149,16 +149,18 @@ public class Table : MonoBehaviour {
 
         int stuck = 0; //[DEBUG]
 
+        //Debug.Log(actualPlayer.name + " starts the round");
+
         while (actualPlayer.GetComponent<Player>().BetValue < maxBetValue)
         {
             if (stuck++ > 100)
             {
-                Debug.Log("Stuck in a while loop in Betting()");
+                Debug.LogError("Stuck in a while loop in Betting()");
                 yield return null; //Debug, not really a yield
             }
 
 
-            //Debug.Log("Decision making started");
+            //Debug.Log("Decision making started",actualPlayer);
 
             //HERE plays the player
             actualPlayer.GetComponent<Player>().MakeDecision(maxBetValue);
@@ -170,9 +172,10 @@ public class Table : MonoBehaviour {
             }
 
 
-            //Debug.Log("Decision making has ended");
+            //Debug.Log("Decision making has ended",actualPlayer);
 
-            if (actualPlayer.GetComponent<Player>().folded)
+            //do not fold if only player in pot
+            if (actualPlayer.GetComponent<Player>().folded && PlayersIn.Count>1)
             {
                 PlayersIn.Remove(actualPlayer);
             }
@@ -182,21 +185,13 @@ public class Table : MonoBehaviour {
             maxBetValue = Mathf.Max(maxBetValue,actualPlayer.GetComponent<Player>().BetValue);
 
 
-            //Go to next player [POSSIBLE BUG]
-            int i = 0; //[DEBUG]
+            //Go to next player
             actualPlayer = actualPlayer.GetComponent<Player>().NextPlayer;
-            while (!PlayersIn.Contains(actualPlayer))
+            while (PlayersIn.Count>0 && !PlayersIn.Contains(actualPlayer))
             {
                 actualPlayer = actualPlayer.GetComponent<Player>().NextPlayer;
-
-                //[DEBUG]
-                if (i++ > 100)
-                {
-                    Debug.Log("We stuck in infinity loop in Betting()");
-                    yield return null;
-                }
+                
             }
-            
         }
 
         finishedBetting = true;
